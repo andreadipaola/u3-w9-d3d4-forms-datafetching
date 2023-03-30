@@ -1,9 +1,19 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import AllTheBooks from "./components/AllTheBooks";
+
+import BookList from "./components/BookList";
 import MyFooter from "./components/MyFooter";
 import MyNav from "./components/MyNav";
 import Welcome from "./components/Welcome";
+
+import fantasy from "./books/fantasy.json";
+import history from "./books/history.json";
+import horror from "./books/horror.json";
+import romance from "./books/romance.json";
+import scifi from "./books/scifi.json";
+
+const allBooks = [...fantasy, ...history, ...horror, ...romance, ...scifi];
+const shuffledBooks = allBooks.sort((a, b) => 0.5 - Math.random()).splice(0, 24);
 
 function App() {
   return (
@@ -12,7 +22,7 @@ function App() {
         <MyNav />
       </header>
       <Welcome />
-      <AllTheBooks />
+      <BookList books={shuffledBooks} />
       <MyFooter />
     </div>
   );
