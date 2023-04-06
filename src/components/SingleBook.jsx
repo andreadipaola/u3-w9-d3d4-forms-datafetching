@@ -1,6 +1,11 @@
 import { Component } from "react";
 import { Card } from "react-bootstrap";
 
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MjBjMWY4MWI0MjAwMTM5YjI3YzUiLCJpYXQiOjE2ODA1ODUyOTIsImV4cCI6MTY4MTc5NDg5Mn0.Dklb_mIn1UhIj-uQYZH0YjTZQmPYssEHga1U5MJHjXU";
+
+//
+
 // const SingleBook = (props) => (
 //   <Card
 //     className="border-0 shadow-lg"
@@ -31,24 +36,27 @@ class SingleBook extends Component {
     selected: false
   };
 
+  handleClick = () => {
+    console.log("abbiamo cliccato: " + this.props.title);
+    if (this.state.selected === false) {
+      this.setState({ selected: true });
+    } else {
+      this.setState({ selected: false });
+    }
+  };
+
+  // onClick={() => this.setState({ selected: !this.state.selected })}
+  // style={{ border: this.state.selected ? '3px solid red' : 'none' }}
+
   render() {
     return (
       <Card
         key={`id: ${this.props.asin}`}
-        className="border-0 shadow-lg"
-        style={{
-          color: "#fff",
-          background: "#282c34"
-        }}
-        onClick={() => {
-          console.log("abbiamo cliccato: " + this.props.title);
-          this.setState({ selected: true });
-          console.log(this.state.selected);
-        }}
-
-        // {this.state.selected === true && (
-        //     className = "border border-danger"
-        //   )};
+        className="shadow-lg"
+        onClick={() => this.handleClick()}
+        // onClick={() => this.setState({ selected: !this.state.selected })}
+        style={{ border: this.state.selected ? "3px solid red" : "none", color: "#fff", background: "#282c34" }}
+        // , color: "#fff", background: "#282c34"
       >
         <Card.Img
           variant="top"
